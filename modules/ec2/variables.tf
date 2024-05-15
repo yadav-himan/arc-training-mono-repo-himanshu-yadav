@@ -39,3 +39,8 @@ variable "security_group_id" {
   type = string
   default = "sg-0b248382bda490ff7"
 }
+
+variable "key_pair" {
+  type    = string
+  default = "himanshu_arc-ec2"
+}
