@@ -35,10 +35,10 @@ variable "username" {
   type = string
 }
 
-variable "password" {
-  description = "Password for the RDS instance"
-  type = string
-}
+# variable "password" {
+#   description = "Password for the RDS instance"
+#   type = string
+# }
 
 variable "db_subnet_group_name" {
   description = "Name of the DB subnet group"
