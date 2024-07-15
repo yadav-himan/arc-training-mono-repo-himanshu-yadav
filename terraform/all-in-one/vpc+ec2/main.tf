@@ -1,12 +1,20 @@
 module network {
   source = "../../../modules/network"
-  vpc_name = var.vpc_name
+  environment = "himanshu-arc"
+  vpc_name = "himanhsu-arc-vpc"
+  vpc_cidr = "10.0.0.0/16"
+  public_subnets_cidr = ["10.0.0.0/20", "10.0.128.0/20"]
+  private_subnets_cidr = ["10.0.16.0/20", "10.0.144.0/20"]
+
  
 }
 
 module ec2 {
   source = "../../../modules/ec2"
-  depends_on    = [module.network]
+  name              = "himanshu-arc-ec2"
+  ami               = "ami-04b70fa74e45c3917"
+  instance_type     = "t2.micro"
+  key_pair = "himanshu_arc-ec2"
   
 }
 
@@ -17,7 +25,6 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 }
 module "rds" {
   source = "../../../modules/rds"
-  depends_on    = [module.ec2]
   instance_class = var.instance_class
   identifier = var.identifier
   allocated_storage = var.allocated_storage
